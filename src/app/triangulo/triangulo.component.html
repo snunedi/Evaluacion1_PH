@@ -1,0 +1,58 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Triángulo</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <p>
+      Selecciona el tipo de triángulo y completa los valores requeridos para calcular el perímetro.
+    </p>
+
+    <!-- Imagen estática que siempre aparece al inicio -->
+    <ion-img 
+      src="assets/images/triangulo.png" 
+      alt="Diagrama del triángulo" 
+      style="width: 300px; height: auto; margin: 60px auto; display: block;">
+    </ion-img>
+
+    <!-- Selección del tipo de triángulo -->
+    <ion-item>
+      <ion-label>Tipo de Triángulo</ion-label>
+      <ion-select [(ngModel)]="tipoTriangulo">
+        <ion-select-option value="escaleno">Escaleno</ion-select-option>
+        <ion-select-option value="equilatero">Equilátero</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Inputs para Triángulo Escaleno -->
+    <div *ngIf="tipoTriangulo === 'escaleno'">
+      <ion-item>
+        <ion-label position="stacked">Lado A (cm)</ion-label>
+        <ion-input [(ngModel)]="ladoA" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Lado B (cm)</ion-label>
+        <ion-input [(ngModel)]="ladoB" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Lado C (cm)</ion-label>
+        <ion-input [(ngModel)]="ladoC" type="number"></ion-input>
+      </ion-item>
+    </div>
+
+    <!-- Inputs para Triángulo Equilátero -->
+    <div *ngIf="tipoTriangulo === 'equilatero'">
+      <ion-item>
+        <ion-label position="stacked">Lado (cm)</ion-label>
+        <ion-input [(ngModel)]="ladoA" type="number"></ion-input>
+      </ion-item>
+    </div>
+
+    <!-- Botón para calcular el perímetro -->
+    <ion-button expand="block" (click)="calcularPerimetro()">Calcular el perímetro</ion-button>
+
+    <!-- Resultado -->
+    <div *ngIf="perimetro !== null">
+      <p>El perímetro del triangulo seleccionado es: {{ perimetro }} cm</p>
+    </div>
+  </ion-card-content>
+</ion-card>
